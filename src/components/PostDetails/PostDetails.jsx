@@ -1,28 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   Card,
   CardContent,
   CardHeader,
-  Typography,
-  Grid,
-  Paper,
+  Typography, 
   Button,
   Divider,
   CardActions,
   Checkbox,
   Box,
   IconButton,
-} from '@mui/material';
-import { FavoriteBorder, Favorite, Share } from '@mui/icons-material';
+} from "@mui/material";
+import { FavoriteBorder, Favorite, Share } from "@mui/icons-material";
 
-import theme from '../../styles/Styles';
-import LoadingPaper from '../LoadingPaper/LoadingPaper';
+import theme from "../../styles/Styles";
+import LoadingPaper from "../LoadingPaper/LoadingPaper";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const PostDetails = () => {
   const { id } = useParams();
   const [post, setPost] = useState({});
-  const [isChecked, setIsChecked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +34,7 @@ const PostDetails = () => {
         setLikes(data.reactions);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setLoading(false);
       }
     };
@@ -43,89 +42,59 @@ const PostDetails = () => {
     fetchPost();
   }, [id]);
 
-  const handleClick = () => {
-    if (!isChecked) {
+  const handleLikeButton = () => {    //Once Backend is ready, change this logic to make the like dispatched to database
+    if (!isLiked) {
       setLikes((prev) => prev + 1);
-      setIsChecked((prev) => !prev);
+      setIsLiked((prev) => !prev);
     } else {
       setLikes((prev) => prev - 1);
-      setIsChecked((prev) => !prev);
+      setIsLiked((prev) => !prev);
     }
+  };
+
+  const handleShareButton = () => {    //To be implemented in the future
+    alert("This button doesn't work yet! Come back later!!");
   };
 
   if (loading) return <LoadingPaper />;
 
-  if (!post.id)
-    return (
-      <Grid
-        container
-        spacing={0}
-        direction='column'
-        alignItems='center'
-        style={{ minHeight: '100vh' }}
-      >
-        <Paper
-          elevation={12}
-          sx={{
-            padding: '20px',
-            borderRadius: '15px',
-            width: '60vw',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography>Whoops! It seems this page does not exist...</Typography>
-        </Paper>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '20px',
-          }}
-        >
-          <Button variant='contained' href='/'>
-            Back to Posts Page
-          </Button>
-        </Box>
-      </Grid>
-    );
+  if (!post.id) return <ErrorPage />;
 
   return (
-    <Card sx={{ maxWidth: 800, borderRadius: '1rem', margin: 'auto' }}>
-      <Box display='flex' justifyContent='space-between' paddingBottom='8px'>
+    <Card sx={{ maxWidth: 800, borderRadius: "1rem", margin: "auto" }}>
+      <Box display="flex" justifyContent="space-between" paddingBottom="8px">
         <CardHeader
           title={post.title}
           subheader={`Author of the story: ${post.userId}`}
           sx={{ color: theme.palette.primary.main }}
         />
-        <CardActions disableSpacing sx={{ paddingRight: '15px' }}>
+        <CardActions disableSpacing sx={{ paddingRight: "15px" }}>
           <Typography
-            variant='body2'
-            sx={{ color: 'grey', marginRight: '10px' }}
+            variant="body2"
+            sx={{ color: "grey", marginRight: "10px" }}
           >
             Post ID: {post.id}
           </Typography>
           <Checkbox
-            onClick={handleClick}
+            onClick={handleLikeButton}
             icon={<FavoriteBorder />}
             checkedIcon={
               <Favorite sx={{ color: theme.palette.primary.main }} />
             }
           />
-          <Typography variant='body2' color='grey'>
+          <Typography variant="body2" color="grey">
             {likes}
           </Typography>
-          <IconButton>
+          <IconButton onClick={handleShareButton}>
             <Share
-              sx={{ color: theme.palette.primary.main, marginLeft: '8px' }}
+              sx={{ color: theme.palette.primary.main, marginLeft: "8px" }}
             />
           </IconButton>
         </CardActions>
       </Box>
       <Typography
-        variant='body2'
-        sx={{ color: 'grey', paddingY: 0, paddingX: 2 }}
+        variant="body2"
+        sx={{ color: "grey", paddingY: 0, paddingX: 2 }}
       >
         Tags: {post.tags.map((tag) => `#${tag} `)}
       </Typography>
@@ -133,28 +102,28 @@ const PostDetails = () => {
       <CardContent>
         <Divider
           sx={{
-            alignItems: 'center',
+            alignItems: "center",
             bgcolor: theme.palette.primary.main,
-            width: '100%',
+            width: "100%",
           }}
         />
 
-        <Typography variant='body1' sx={{ paddingY: 2 }}>
+        <Typography variant="body1" sx={{ paddingY: 2 }}>
           {post.body}
         </Typography>
       </CardContent>
 
-      <Box display='flex' justifyContent='flex-end'>
+      <Box display="flex" justifyContent="flex-end">
         <Button
-          variant='contained'
-          href='/'
+          variant="contained"
+          href="/"
           sx={{
             bgcolor: theme.palette.primary.main,
             color: theme.palette.pale.main,
-            transition: '0.4s',
+            transition: "0.4s",
             borderBottomLeftRadius: 0,
             borderTopRightRadius: 0,
-            '&:hover': {
+            "&:hover": {
               color: theme.palette.orange.main,
               bgcolor: theme.palette.dark.main,
             },

@@ -19,8 +19,7 @@ const Posts = () => {
         setPosts([...data.posts]);
         setLoading(false);
       } catch (error) {
-        console.error(error.message);
-        alert(error.message);
+        console.error(error);        
         setLoading(false);
       }
     };
