@@ -29,9 +29,9 @@ The dedicated post page is located at /posts/:id, where :id is the post ID. When
 
 ### Technologies used
 
--React
--React Router
--Material-UI
+- React
+- React Router
+- Material-UI
 
 ### Process
 
