@@ -4,7 +4,7 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Typography, 
+  Typography,
   Button,
   Divider,
   CardActions,
@@ -22,8 +22,8 @@ const PostDetails = () => {
   const { id } = useParams();
   const [post, setPost] = useState({});
   const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes] = useState();
-  const [loading, setLoading] = useState(true);
+  const [likes, setLikes] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -32,33 +32,34 @@ const PostDetails = () => {
         const data = await response.json();
         setPost(data);
         setLikes(data.reactions);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchPost();
   }, [id]);
 
-  const handleLikeButton = () => {    //Once Backend is ready, change this logic to make the like dispatched to database
-    if (!isLiked) {
-      setLikes((prev) => prev + 1);
-      setIsLiked((prev) => !prev);
-    } else {
-      setLikes((prev) => prev - 1);
-      setIsLiked((prev) => !prev);
-    }
+  const handleLikeButton = () => {
+    // Once Backend is ready, change this logic to make the like dispatched to database
+    setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
+    setIsLiked((prev) => !prev);
   };
 
-  const handleShareButton = () => {    //To be implemented in the future
+  const handleShareButton = () => {
+    // To be implemented in the future
     alert("This button doesn't work yet! Come back later!!");
   };
 
-  if (loading) return <LoadingPaper />;
+  if (isLoading) {
+    return <LoadingPaper />;
+  }
 
-  if (!post.id) return <ErrorPage />;
+  if (!post.id) {
+    return <ErrorPage />;
+  }
 
   return (
     <Card sx={{ maxWidth: 800, borderRadius: "1rem", margin: "auto" }}>
