@@ -1,3 +1,6 @@
+# DummyPosts
+This is a repository containing a coding task from Acterio company.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
