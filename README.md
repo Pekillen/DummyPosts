@@ -1,73 +1,42 @@
 # DummyPosts
 This is a repository containing a coding task from Acterio company.
 
-# Getting Started with Create React App
+## Build and run locally
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To build and run the app locally on your machine you need to:
 
-## Available Scripts
+- Get the code on your local device 
+- Open the folder containing the code
+- Run `npm install` and then `npm start` using terminal or CLI
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
+This will allow you to run the app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Posts Page
 
-### `npm run build`
+The posts page is located at "/posts". However, since the project is very simple and has no homepage, users who open the "/" URL will be automatically redirected to "/posts". Upon loading the page, the app makes a GET request to an API to fetch the list of posts. The posts are displayed in a simple and responsive grid UI, with colors inspired by the official Acterio.com website. Each post is represented by a card that displays the post title, body, and additional information. Clicking on a post card will navigate to the dedicated post page for that particular post.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dedicated Post Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The dedicated post page is located at /posts/:id, where :id is the post ID. When the page loads, the app makes a GET request to the API to fetch the post with the specified ID. The post is displayed in a simple UI with its title and body. All other information provided by the API is also displayed on the UI.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies and Process
 
-### `npm run eject`
+### Technologies used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-React
+-React Router
+-Material-UI
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The project was initialized using npx create-react-app. The first step was to install the dependencies. Then, the component tree was created, followed by the implementation of logic such as fetching data from an API and navigating between pages. However, the most time-consuming aspect of the project was creating and styling the UI.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Potential Future Improvements
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The UI could be further developed, to make it even easier to navigate and more eye-pleasing, however in my opinion the biggest improvement would be introduction of photos or graphics, that were not provided by the API. Afterwards a functionalities such as liking and sharing posts could be implemented. A pagination could be a quality of life change, that could help users organise the content easier. Implementation of search bar would be another big improvement. Finally, introducing a funcionallity allowing users to create and edit posts would be probably very desirable.
