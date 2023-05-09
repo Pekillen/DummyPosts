@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import { Grid, Box, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Grid, Box, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-import Post from "./Post/Post";
-import LoadingPaper from "../LoadingPaper/LoadingPaper";
+import Post from './Post/Post';
+import LoadingPaper from '../LoadingPaper/LoadingPaper';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/posts");
+        const response = await fetch('https://dummyjson.com/posts');
         const data = await response.json();
         setPosts([...data.posts]);
         setLoading(false);
@@ -37,7 +37,7 @@ const Posts = () => {
   };
 
   const searchFilter = (value) => {
-    if (query == "") {
+    if (query == '') {
       return true;
     } else if (value.title.toLowerCase().includes(query.toLowerCase())) {
       return true;
@@ -47,10 +47,10 @@ const Posts = () => {
   if (loading) return <LoadingPaper />;
 
   return (
-    <Box sx={{ minHeight: "400px" }}>
-      <Box component="form" sx={{ display: "flex", marginBottom: "1rem" }}>
+    <Box sx={{ minHeight: '400px' }}>
+      <Box component='form' sx={{ display: 'flex', marginBottom: '1rem' }}>
         <TextField
-          label="Search by title"
+          label='Search by title'
           value={query}
           onChange={handleInputChange}
           sx={{ flex: 1 }}
@@ -59,16 +59,16 @@ const Posts = () => {
 
       <Grid
         container
-        alignItems="stretch"
+        alignItems='stretch'
         spacing={3}
-        sx={{ display: "flex", marginBottom: "1.75rem" }}
+        sx={{ display: 'flex', marginBottom: '1.75rem' }}
       >
         {posts.filter(searchFilter).map((post) => (
           <Grid item xs={12} md={6} key={post.id}>
             <Post
               post={post}
               onClick={() => handlePostClick(post.id)}
-              sx={{ height: "100%" }}
+              sx={{ height: '100%' }}
             />
           </Grid>
         ))}

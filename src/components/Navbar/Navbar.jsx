@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Typography, Box, AppBar, Toolbar } from "@mui/material";
+import { Typography, Box, AppBar, Toolbar, Button } from "@mui/material";
 import theme from "../../styles/Styles";
 
 import acterioPNG from "../../acterio.png";
@@ -15,7 +15,7 @@ export default function Navbar() {
         borderBottomRightRadius: "1rem",
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar sx={{ display: "flex" }}>
         <Link to="/" style={{ textDecoration: "none" }}>
           <Box sx={{ display: "flex" }}>
             <img src={acterioPNG} alt="acterio" height="45px" />
@@ -25,11 +25,15 @@ export default function Navbar() {
                 color: theme.palette.secondary.main,
                 marginBottom: 2,
                 marginX: 2,
-                alignSelf: "center",
+                ":hover": {
+                  color: theme.palette.orange.main,
+                  transition: "0.3s",
+                },
               }}
             >
               {" "}
-              Dummy Posts{" "}
+              Dummy Posts
+              {" "}
             </Typography>
           </Box>
         </Link>

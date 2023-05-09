@@ -12,8 +12,14 @@ const theme = createTheme({
     grey: {
         main: '#808080',
     },
+    orange: {
+      main: '#ef8450',
+    },
     pale: {
         main: '#f8fdfc',
+    },
+    dark: {
+      main: '#132C3B',
     }
   }, 
   typography: {

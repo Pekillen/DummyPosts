@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -12,11 +12,12 @@ import {
   CardActions,
   Checkbox,
   Box,
-} from "@mui/material";
-import { FavoriteBorder, Favorite, Share } from "@mui/icons-material";
+  IconButton,
+} from '@mui/material';
+import { FavoriteBorder, Favorite, Share } from '@mui/icons-material';
 
-import theme from "../../styles/Styles";
-import LoadingPaper from "../LoadingPaper/LoadingPaper";
+import theme from '../../styles/Styles';
+import LoadingPaper from '../LoadingPaper/LoadingPaper';
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -59,31 +60,31 @@ const PostDetails = () => {
       <Grid
         container
         spacing={0}
-        direction="column"
-        alignItems="center"
-        style={{ minHeight: "100vh" }}
+        direction='column'
+        alignItems='center'
+        style={{ minHeight: '100vh' }}
       >
         <Paper
           elevation={12}
           sx={{
-            padding: "20px",
-            borderRadius: "15px",
-            width: "60vw",
-            display: "flex",
-            justifyContent: "center",
+            padding: '20px',
+            borderRadius: '15px',
+            width: '60vw',
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
           <Typography>Whoops! It seems this page does not exist...</Typography>
         </Paper>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "20px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: '20px',
           }}
         >
-          <Button variant="contained" href="/">
+          <Button variant='contained' href='/'>
             Back to Posts Page
           </Button>
         </Box>
@@ -91,17 +92,17 @@ const PostDetails = () => {
     );
 
   return (
-    <Card sx={{ maxWidth: 800, borderRadius: "1rem", margin: "auto" }}>
-      <Box display="flex" justifyContent="space-between" paddingBottom="8px">
+    <Card sx={{ maxWidth: 800, borderRadius: '1rem', margin: 'auto' }}>
+      <Box display='flex' justifyContent='space-between' paddingBottom='8px'>
         <CardHeader
           title={post.title}
           subheader={`Author of the story: ${post.userId}`}
           sx={{ color: theme.palette.primary.main }}
         />
-        <CardActions disableSpacing sx={{ paddingRight: "15px" }}>
+        <CardActions disableSpacing sx={{ paddingRight: '15px' }}>
           <Typography
-            variant="body2"
-            sx={{ color: "grey", marginRight: "10px" }}
+            variant='body2'
+            sx={{ color: 'grey', marginRight: '10px' }}
           >
             Post ID: {post.id}
           </Typography>
@@ -112,17 +113,19 @@ const PostDetails = () => {
               <Favorite sx={{ color: theme.palette.primary.main }} />
             }
           />
-          <Typography variant="body2" color="grey">
+          <Typography variant='body2' color='grey'>
             {likes}
           </Typography>
-          <Share
-            sx={{ color: theme.palette.primary.main, marginLeft: "8px" }}
-          />
+          <IconButton>
+            <Share
+              sx={{ color: theme.palette.primary.main, marginLeft: '8px' }}
+            />
+          </IconButton>
         </CardActions>
       </Box>
       <Typography
-        variant="body2"
-        sx={{ color: "grey", paddingY: 0, paddingX: 2 }}
+        variant='body2'
+        sx={{ color: 'grey', paddingY: 0, paddingX: 2 }}
       >
         Tags: {post.tags.map((tag) => `#${tag} `)}
       </Typography>
@@ -130,27 +133,31 @@ const PostDetails = () => {
       <CardContent>
         <Divider
           sx={{
-            alignItems: "center",
+            alignItems: 'center',
             bgcolor: theme.palette.primary.main,
-            width: "100%",
+            width: '100%',
           }}
         />
 
-        <Typography variant="body1" sx={{ paddingY: 2 }}>
+        <Typography variant='body1' sx={{ paddingY: 2 }}>
           {post.body}
         </Typography>
       </CardContent>
 
-      <Box display="flex" justifyContent="flex-end">
+      <Box display='flex' justifyContent='flex-end'>
         <Button
-          variant="contained"
-          href="/"
+          variant='contained'
+          href='/'
           sx={{
             bgcolor: theme.palette.primary.main,
-            color: "white",
-            transition: "0.4s",
+            color: theme.palette.pale.main,
+            transition: '0.4s',
             borderBottomLeftRadius: 0,
             borderTopRightRadius: 0,
+            '&:hover': {
+              color: theme.palette.orange.main,
+              bgcolor: theme.palette.dark.main,
+            },
           }}
         >
           Back to Posts Page
