@@ -5,11 +5,12 @@ import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Posts from './components/Posts/Posts';
 import PostDetails from './components/PostDetails/PostDetails';
+import theme from './styles/Styles';
 
  
 const App = () => {     
  return (
-    <Container sx={{ bgcolor: '#f8fdfc', minHeight: "100vh" }}>
+    <Container sx={{ bgcolor: theme.palette.pale.main, minHeight: "100vh" }}>
       <BrowserRouter>
           <Box maxWidth="lg">
             <Navbar />

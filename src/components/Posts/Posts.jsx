@@ -35,12 +35,12 @@ const Posts = () => {
   if (loading) return <LoadingPaper />
 
     
-  return ( //Maybe constrain the Post size to wrap after a few lines
-    <Box sx={{ minHeight: '400px'}} >
-      <Grid container alignItems="stretch" spacing={3} sx={{ display: 'flex', }} >
+  return ( 
+    <Box sx={{ minHeight: '400px' }}  >
+      <Grid container alignItems="stretch" spacing={3} sx={{ display: 'flex', marginBottom: "25px" }} >
         {posts.map((post) => (
           <Grid item xs={12} md={6} key={post.id} >            
-              <Post post={post} onClick={() => handlePostClick(post.id)} sx={{ height: '100%' }} />           
+              <Post post={post} onClick={() => handlePostClick(post.id)}  sx={{ height: '100%' }} />           
           </Grid>
         ))}
       </Grid>

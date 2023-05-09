@@ -10,12 +10,12 @@ import {
   Button,
   Divider,
   CardActions,
-  IconButton,
   Checkbox,
   Box,
 } from "@mui/material";
 import { FavoriteBorder, Favorite, Share } from "@mui/icons-material";
 
+import theme from "../../styles/Styles";
 import LoadingPaper from "../LoadingPaper/LoadingPaper";
 
 const PostDetails = () => {
@@ -34,16 +34,12 @@ const PostDetails = () => {
         setLikes(data.reactions);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setLoading(false);
       }
     };
 
     fetchPost();
-
-    return () => {
-      console.log("Clean up function ran");
-    };
   }, [id]);
 
   const handleClick = () => {
@@ -65,7 +61,6 @@ const PostDetails = () => {
         spacing={0}
         direction="column"
         alignItems="center"
-        justifyContent="top"
         style={{ minHeight: "100vh" }}
       >
         <Paper
@@ -80,9 +75,18 @@ const PostDetails = () => {
         >
           <Typography>Whoops! It seems this page does not exist...</Typography>
         </Paper>
-        <Button variant="contained" href="/">
-          Posts Page
-        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "20px",
+          }}
+        >
+          <Button variant="contained" href="/">
+            Back to Posts Page
+          </Button>
+        </Box>
       </Grid>
     );
 
@@ -92,7 +96,7 @@ const PostDetails = () => {
         <CardHeader
           title={post.title}
           subheader={`Author of the story: ${post.userId}`}
-          sx={{ color: "#133a44" }}
+          sx={{ color: theme.palette.primary.main }}
         />
         <CardActions disableSpacing sx={{ paddingRight: "15px" }}>
           <Typography
@@ -104,12 +108,16 @@ const PostDetails = () => {
           <Checkbox
             onClick={handleClick}
             icon={<FavoriteBorder />}
-            checkedIcon={<Favorite sx={{ color: "#133a44" }} />}
+            checkedIcon={
+              <Favorite sx={{ color: theme.palette.primary.main }} />
+            }
           />
           <Typography variant="body2" color="grey">
             {likes}
           </Typography>
-          <Share sx={{ color: "#133a44", marginLeft: "8px" }} />
+          <Share
+            sx={{ color: theme.palette.primary.main, marginLeft: "8px" }}
+          />
         </CardActions>
       </Box>
       <Typography
@@ -121,7 +129,11 @@ const PostDetails = () => {
 
       <CardContent>
         <Divider
-          sx={{ alignItems: "center", bgcolor: "#133a44", width: "100%" }}
+          sx={{
+            alignItems: "center",
+            bgcolor: theme.palette.primary.main,
+            width: "100%",
+          }}
         />
 
         <Typography variant="body1" sx={{ paddingY: 2 }}>
@@ -129,13 +141,12 @@ const PostDetails = () => {
         </Typography>
       </CardContent>
 
-      {/* DAWJA NA PRAWo */}
       <Box display="flex" justifyContent="flex-end">
         <Button
           variant="contained"
           href="/"
           sx={{
-            bgcolor: "#133a44",
+            bgcolor: theme.palette.primary.main,
             color: "white",
             transition: "0.4s",
             borderBottomLeftRadius: 0,

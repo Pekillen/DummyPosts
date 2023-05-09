@@ -1,4 +1,3 @@
-import { CheckBox } from "@mui/icons-material";
 import {
   Card,
   Grid,
@@ -9,6 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
+import theme from "../../../styles/Styles";
 
 const Post = ({ post, onClick }) => {
   return (
@@ -19,41 +19,33 @@ const Post = ({ post, onClick }) => {
         borderRadius: "15px",
         height: "100%",
         position: "relative",
-        ":hover": { bgcolor: "#b8d9d6", transition: "0.3s" },
+        ":hover": { bgcolor: theme.palette.secondary.main, transition: "0.3s" },
       }}
       raised
     >
       <ButtonBase onClick={onClick}>
-        <Grid
-          container 
-          spacing={1}
-          padding={1.5}
-        >
-          <Grid
-            item
-            container          
-            sx={{ direction: "row" }}
-            xs={9}
-          >
-            <Typography
-              variant="body2"
-              color="grey"            
-            >
+        <Grid container spacing={1} padding={1.5}>
+          <Grid item container sx={{ direction: "row" }} xs={9}>
+            <Typography variant="body2" color={theme.palette.grey.main}>
               Created by: {post.userId}
             </Typography>
             <Favorite
-              fontSize="small"              
-              sx={{ color: '#133a44', marginLeft: "20px", marginRight: "5px" }}
+              fontSize="small"
+              sx={{
+                color: theme.palette.primary.main,
+                marginLeft: "20px",
+                marginRight: "5px",
+              }}
             />
-            <Typography variant="body2" color="grey">
+            <Typography variant="body2" color={theme.palette.grey.main}>
               {post.reactions} {post.reactions === 1 ? "Like" : "Likes"}
             </Typography>
           </Grid>
           <Grid item xs={3}>
             <Typography
               variant="body2"
-              color="grey"
-              textAlign="right"             
+              color={theme.palette.grey.main}
+              textAlign="right"
             >
               {" "}
               Post ID: {post.id}
@@ -63,18 +55,17 @@ const Post = ({ post, onClick }) => {
           <Divider
             sx={{
               alignItems: "center",
-              bgcolor: "#133a44",
+              bgcolor: theme.palette.primary.main,
               width: "100%",
               marginTop: "5px",
             }}
           />
 
           <Grid item xs={12}>
-            <Typography variant="h5" color="#133a44">
+            <Typography variant="h5" color={theme.palette.primary.main}>
               {post.title}
             </Typography>
           </Grid>
-        
 
           <Grid item xs={12}>
             <Box>
@@ -84,17 +75,11 @@ const Post = ({ post, onClick }) => {
             </Box>
           </Grid>
 
-          {/* PONIZEJ JEST TEKST */}
-       
           <Grid item>
             <CardContent>
-              <Typography
-                variant="body2"
-                color="textSecondary"                              
-              >
+              <Typography variant="body2" color="textSecondary">
                 {post.body}
               </Typography>
-
             </CardContent>
           </Grid>
         </Grid>
