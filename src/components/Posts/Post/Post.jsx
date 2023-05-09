@@ -8,6 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
+
 import theme from "../../../styles/Styles";
 
 const Post = ({ post, onClick }) => {
@@ -16,7 +17,7 @@ const Post = ({ post, onClick }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        borderRadius: "15px",
+        borderRadius: "1rem",
         height: "100%",
         position: "relative",
         ":hover": { bgcolor: theme.palette.secondary.main, transition: "0.3s" },
