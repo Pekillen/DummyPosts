@@ -1,91 +1,66 @@
-import {
-  Card,
-  Grid,
-  Typography,
-  ButtonBase,
-  Box,
-  CardContent,
-  Divider,
-} from '@mui/material';
-import { Favorite } from '@mui/icons-material';
+import { Grid, Typography, ButtonBase, Box, CardContent } from "@mui/material";
+import { Favorite } from "@mui/icons-material";
 
-import theme from '../../../styles/Styles';
+import theme from "../../../styles/Styles";
+import {
+  StyledCard,
+  GreyTypography,
+  StyledDivider,
+} from "../../../styles/Styles";
+// The code could be further modularized and separated, but since it is a small project it isn't a must
 
 const Post = ({ post, onClick }) => {
   return (
-    <Card
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: '1rem',
-        height: '100%',
-        position: 'relative',
-        ':hover': { bgcolor: theme.palette.secondary.main, transition: '0.3s' },
-      }}
-      raised
-    >
+    <StyledCard raised>
       <ButtonBase onClick={onClick}>
         <Grid container spacing={1} padding={1.5}>
-          <Grid item container sx={{ direction: 'row' }} xs={9}>
-            <Typography variant='body2' color={theme.palette.grey.main}>
+          <Grid item container sx={{ direction: "row" }} xs={9}>
+            <GreyTypography variant="body2">
               Created by: {post.userId}
-            </Typography>
+            </GreyTypography>
             <Favorite
-              fontSize='small'
+              fontSize="small"
               sx={{
                 color: theme.palette.primary.main,
-                marginLeft: '20px',
-                marginRight: '5px',
+                marginLeft: "20px",
+                marginRight: "5px",
               }}
             />
-            <Typography variant='body2' color={theme.palette.grey.main}>
-              {post.reactions} {post.reactions === 1 ? 'Like' : 'Likes'}
-            </Typography>
+            <GreyTypography variant="body2">
+              {post.reactions} {post.reactions === 1 ? "Like" : "Likes"}
+            </GreyTypography>
           </Grid>
           <Grid item xs={3}>
-            <Typography
-              variant='body2'
-              color={theme.palette.grey.main}
-              textAlign='right'
-            >
-              {' '}
+            <GreyTypography variant="body2" textAlign="right">
+              {" "}
               Post ID: {post.id}
-            </Typography>
+            </GreyTypography>
           </Grid>
 
-          <Divider
-            sx={{
-              alignItems: 'center',
-              bgcolor: theme.palette.primary.main,
-              width: '100%',
-              marginTop: '5px',
-            }}
-          />
+          <StyledDivider />
 
           <Grid item xs={12}>
-            <Typography variant='h5' color={theme.palette.primary.main}>
+            <Typography variant="h5" color={theme.palette.primary.main}>
               {post.title}
             </Typography>
           </Grid>
 
           <Grid item xs={12}>
             <Box>
-              <Typography variant='body2' color='textSecondary'>
+              <GreyTypography variant="body2">
                 Tags: {post.tags.map((tag) => `#${tag} `)}
-              </Typography>
+              </GreyTypography>
             </Box>
           </Grid>
 
           <Grid item>
             <CardContent>
-              <Typography variant='body2' color='textSecondary'>
-                {post.body}
-              </Typography>
+              <GreyTypography variant="body2">{post.body}</GreyTypography>
             </CardContent>
           </Grid>
         </Grid>
       </ButtonBase>
-    </Card>
+    </StyledCard>
   );
 };
 

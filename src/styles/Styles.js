@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material';
+import { createTheme, Card, Typography, Divider, } from '@mui/material';
+import styled from '@emotion/styled';
 
 
 const theme = createTheme({
@@ -39,3 +40,26 @@ const theme = createTheme({
 })
 
 export default theme;
+
+export const StyledCard = styled(Card)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  borderRadius: '1rem',
+  height: '100%',
+  position: 'relative',
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.main,
+    transition: '0.3s',
+  },
+}));
+
+export const StyledDivider = styled(Divider)(({ theme }) => ({
+  alignItems: 'center',
+  backgroundColor: theme.palette.primary.main,
+  width: '100%',
+  marginTop: '5px',
+}));
+
+export const GreyTypography = styled(Typography)(({ theme }) => ({  
+  color: theme.palette.grey.main,   
+}));
